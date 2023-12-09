@@ -1,0 +1,205 @@
+<header>
+  <nav class="navbar navbar-expand-lg navigation-bar">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'index_site' %}">
+          <div class="header-name-long d-none d-sm-block">
+              DEMONSTRATIONSSEITE
+          </div>
+          <div class="header-name-short d-block d-sm-none">
+              DEMO-SEITE
+          </div>
+        </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menü</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+           {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'account_site' %}">
+                  <div class="header-account-label">
+                    Account
+                  </div>
+                </a>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link register-nav-link-sizing" href="{% url 'registration_site' %}">
+                  <div class="header-register-label">
+                    Registrieren
+                  </div>
+                </a>
+              </li>
+            {% endif %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'skill_list_site' %}">
+                  <div class="header-skills-label">
+                    Skills
+                  </div>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'contact_site' %}">
+                  <div class="header-contact-label">
+                    Kontakt
+                  </div>
+                </a>
+            </li>
+            {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout_site' %}">
+                  <div class="header-logout-label">
+                    Logout
+                  </div>
+                </a>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'login_site' %}">
+                  <div class="header-login-label">
+                    Login
+                  </div>
+                </a>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<style>
+   .header-name-long,
+   .header-name-short {
+      color: var(--accent-color);
+      font-family: 'Permanent Marker', cursive;
+      letter-spacing: 0.25em;
+    }
+
+    .header-name-long {
+      font-size: 22px;
+    }
+
+    .header-name-short {
+      font-size: 18px;
+    }
+
+  .navbar-toggler {
+     height: 25px;
+     width: 30px;
+     background-color: var(--accent-color);
+     transform: translate(10px, -3px);
+  }
+
+  .navbar-toggler:hover {
+     background-color: #9bd5cf;
+  }
+
+   .navbar-toggler-icon {
+     height: 20px;
+     width: 20px;
+     transform: translate(-7px, -2px) scale(1.35);
+  }
+
+  #offcanvasNavbar {
+     background-color: var(--main-bg-color);
+     width: 250px;
+  }
+
+  #offcanvasNavbarLabel {
+     color: var(--accent-color);
+  }
+
+  .header-login-label,
+  .header-logout-label,
+  .header-register-label,
+  .header-account-label,
+  .header-skills-label,
+  .header-contact-label {
+     padding-top: 3px;
+  }
+
+  .header-login-label a {
+    margin-left: 3px;
+  }
+
+  .nav-link:hover {
+    color: var(--accent-color);
+    border-radius: 30px;
+    transition: 2s ease;
+  }
+
+  .nav-link {
+     display: flex;
+     position: relative;
+     text-align: center !important;
+     align-items: center !important;
+     justify-content: center !important;
+     border-radius: 15px;
+     overflow: hidden;
+     width: 150px;
+     height: 45px;
+  }
+
+  .nav-link:hover::before {
+      width: 250px;
+      height: 250px;
+      content: '';
+      position: absolute;
+      align-items: center;
+      justify-content: center;
+      background-image: conic-gradient(#a5f3f3, #78eded, #18b4b4, #4be7e7, #1fe0e0, #1abcbd, cyan);
+      animation: header-animation 4s linear infinite;
+  }
+
+  .nav-link div {
+     position: absolute;
+     inset: 3px;
+     background-color: var(--main-bg-color);
+     border-radius: 22.5px;
+  }
+
+  .register-nav-link-sizing {
+     width: 250px;
+  }
+
+ @keyframes header-animation {
+    0% {
+      transform: rotate(-90deg)
+    }
+    100% {
+      transform: rotate(270deg)
+    }
+ }
+
+  .navigation-bar {
+      display: flex;
+      position: fixed;
+      justify-content: space-between;
+      align-items: center;
+      background-color: var(--main-bg-color);
+      height: 60px;
+      width: 100%;
+      padding: 4px 20px;
+      font-size: 22px;
+      font-family: 'Rubik Mono One', sans-serif;
+      text-shadow: 1px 1px 1px darkgray;
+      box-shadow: 0 0 8px 8px #128787;
+      z-index: 10;
+  }
+
+  .navigation-bar li {
+      display: inline-block;
+  }
+
+  .navigation-bar li a {
+      transition: 0.5s;
+      text-decoration: none;
+      color: var(--accent-color);
+  }
+</style>

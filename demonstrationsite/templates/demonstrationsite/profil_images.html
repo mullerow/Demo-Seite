@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Profilbilder
+{% endblock %}
+
+{% block content %}
+
+<div class="basic-formatting">
+    <h2>
+        Profilbild Auswahl
+    </h2>
+    <p>
+        Bitte klicken Sie auf das gewünschte Profilbild und bestätigen dann die Auswahl mit dem "Profilbild Übernehmen"-Button
+    </p>
+    <div class="profile-image-backlink">
+        Zurück zum
+        <a href="{% url 'account_site' %}" class="link-danger">
+            Profil-Verwaltung
+        </a>
+    </div>
+    {% if messages %}
+        <ul class="feedback-messages profile-image-feedback-message">
+            {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                    {{ message }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+        <form method="POST" action="{% url 'choose_image_site' %}">
+            {% csrf_token %}
+            <div class="d-flex flex-wrap">
+                {% for image, image_id in image_data %}
+                    {% if image_id != 14 %}
+                        <div class="profile-images">
+                            <input type="radio" name="selected_image" value="{{ image_id }}" id="image_{{ image_id }}" style="display: none;">
+                            <label class="image-label" for="image_{{ image_id }}">
+                                Ausgewählt
+                            </label>
+                            <img src="{{ image.url }}" alt="{{image}}" onclick="document.getElementById('image_{{ image_id }}').click();" class="selected-profile-image">
+                        </div>
+                        {% endif %}
+                {% endfor %}
+            </div>
+            <div>
+                <button class="profile-images-button btn btn-primary" type="submit">
+                    Profilbild übernehmen
+                </button>
+            </div>
+        </form>
+</div>
+<style>
+
+.profile-images {
+    margin: 3px;
+    background-color: var(--main-bg-color);
+    border: 3px solid #d5d5da;
+}
+
+.profile-images-button {
+    margin: 20px 0 20px 5px;
+    background-color: var(--main-bg-color);
+}
+
+.profile-images:hover {
+    cursor: pointer;
+    border: 3px solid var(--accent-color);
+}
+
+.profile-images-button:hover {
+    border: 2px solid var(--accent-color);
+    transition: 0.1s ease;
+    background-color: var(--main-bg-color);
+    color: var(--accent-color);
+  }
+
+input[type="radio"]:checked + label {
+    display: inline-block;
+    font-size: 20px;
+    color: var(--accent-color);
+    transform: rotate(-90deg);
+}
+
+.image-label {
+    display: none;
+    width: 30px;
+}
+
+.profile-image-backlink {
+    margin-bottom: 20px;
+}
+</style>
+{% endblock %}

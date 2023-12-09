@@ -1,0 +1,296 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+@media (max-width: 1200px) {
+    body {
+        font-size: 14px;
+    }
+
+    .basic-formatting {
+        margin: 0 50px 0 50px;
+        padding-top: 60px;
+    }
+
+    .navigation-bar li a {
+        font-size: 14px;
+    }
+
+    .navigation-bar {
+        height: 40px;
+    }
+
+    .nav-link {
+        width: 100px;
+        height: 30px;
+    }
+
+    .register-nav-link-sizing {
+        width: 160px;
+    }
+
+    .nav-link div {
+        inset: 2px;
+    }
+
+    .details-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .footer_text {
+    font-size: 14px;
+    }
+
+    .header-image {
+        display: none;
+    }
+
+    .image-hovertext {
+        display: none;
+    }
+
+    .register-input-label {
+        line-height: 35px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .footer-welcome-text {
+        display: none;
+    }
+
+    .footer-links {
+        display: flex;
+        width: 100%;
+        margin: 0 10% 0 10%;
+        justify-content: space-between;
+    }
+
+    .nav-link:hover::before {
+        display: none;
+    }
+
+    .nav-link:hover {
+         border: 2px solid red;
+         width: 200px;
+    }
+
+   .header-login-label,
+   .header-logout-label,
+   .header-register-label,
+   .header-account-label,
+   .header-skills-label,
+   .header-contact-label {
+         margin-left: 5px;
+         text-align: left;
+   }
+
+   nav-link {
+        text-align: left;
+   }
+
+   .navbar-brand {
+        padding-top: 0px;
+   }
+}
+
+@media (max-width: 768px) {
+    .basic-formatting {
+        margin: 0 30px 0 30px;
+    }
+
+    #skilltree-style {
+        margin-left: 10px;
+    }
+
+    .login-input {
+        width: 280px;
+    }
+
+    .login-container {
+        width: 325px;
+    }
+
+    .loginform {
+        width: 325px;
+    }
+
+    .registration-information {
+        font-size: 14px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    .registerform {
+        width: 330px;
+        height: 300px;
+    }
+
+    .registration-information {
+        width: 330px;
+    }
+
+    .register-input-fields input {
+        width: 140px;
+    }
+
+    .registration-information {
+        width: 330px;
+    }
+
+    .registration-button {
+        font-size: 14px;
+    }
+
+    .register-input-fields input {
+        width: 130px;
+    }
+
+    .account-input input {
+        margin-bottom: 20px;
+        width: 240px;
+    }
+
+    #form_about_me_id {
+        width:240px;
+        height:200px;
+   }
+
+   .contact-site {
+        margin-left: 10px;
+   }
+
+   #sender_first_name,
+   #sender_last_name {
+        width: 300px;
+   }
+
+   .timeline-image {
+        width: 300px;
+   }
+
+   .style-switch {
+        width: 360px;
+        margin: 0px auto;
+   }
+
+   .skill-list {
+        position: relative;
+    }
+
+    .timeline-links {
+        position: absolute;
+    }
+
+   .timeline-image {
+        margin: 20px 0px 20px 0px;
+   }
+
+   .skilltree-label, .timeline-label  {
+        font-size: 18px;
+        margin-left: 10px;
+   }
+
+   #skilltree-style, #timeline-style {
+        margin-left: 45px;
+        transform: scale(1.2);
+   }
+
+   .skill-timeline-1,
+   .skill-timeline-2,
+   .skill-timeline-3,
+   .skill-timeline-4,
+   .skill-timeline-5,
+   .skill-timeline-6,
+   .skill-timeline-7,
+   .skill-timeline-8,
+   .skill-timeline-9,
+   .skill-timeline-10,
+   .skill-timeline-11,
+   .skill-timeline-12,
+   .skill-timeline-13 {
+        font-size: 15px;
+   }
+
+   .skill-timeline-14 {
+        font-size: 14px;
+   }
+
+   .skill-timeline-1 {
+        transform: translate(12px, 297px);
+   }
+
+   .skill-timeline-2 {
+        transform: translate(20px, 334px);
+   }
+
+   .skill-timeline-3 {
+        transform: translate(27px, 169px);
+   }
+
+   .skill-timeline-4 {
+        transform: translate(27px, 105px);
+   }
+
+   .skill-timeline-5 {
+        transform: translate(232px, 220px);
+   }
+
+   .skill-timeline-6 {
+        transform: translate(249px, 290px);
+   }
+
+   .skill-timeline-7 {
+        transform: translate(10px, 125px);
+   }
+
+   .skill-timeline-8 {
+        transform: translate(200px, 105px);
+   }
+
+   .skill-timeline-9 {
+        transform: translate(17px, -112px);
+   }
+
+   .skill-timeline-10 {
+        transform: translate(232px, -2px);
+   }
+
+   .skill-timeline-11 {
+        transform: translate(10px, -120px);
+   }
+
+   .skill-timeline-12 {
+        transform: translate(220px, -107px);
+   }
+
+   .skill-timeline-13 {
+        transform: translate(204px, -225px);
+   }
+
+   .skill-timeline-14 {
+        transform: translate(195px, -196px);
+   }
+
+}
+
+@media (max-width: 420px) {
+     .basic-formatting {
+        margin: 0 20px 0 20px;
+    }
+
+    .visitor-counter {
+        display: none;
+    }
+
+    .skill-tree-13 {
+        font-size: 15px;
+        transform: translate(271px, 206px);
+   }
+   .skill-tree-container {
+         clip-path: polygon(32% 77%, 30% 75%, 30% 62%, 23% 62%, 22% 87%, 11% 87%, 14% 62%, 2% 60%, 2% 50%, 28% 47%, 29% 33%, 15% 19%, 19% 11%,   34% 22%, 45% 13%, 44% 4%, 54% 3%, 59% 14%, 69% 14%, 71% 7%, 85% 7%, 94% 16%, 87% 23%, 86% 29%, 79% 35%, 78% 49%, 98% 50%, 99% 58%, 77% 59%, 78% 75%, 82% 87%, 73% 92%, 60% 80%, 58% 75%, 32% 77%);
+         width: 360px;
+   }
+}

@@ -1,0 +1,454 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Skills
+{% endblock %}
+
+{% block content %}
+<div class="basic-formatting">
+        <h2>
+            Skillseite
+        </h2>
+        <p>
+            Auf dieser Seite haben Sie die Möglichkeit, sich über meine Erfahrungen im Bereich der Programmierung zu informieren.
+            Es stehen mit dem Zeitstrahl und dem Skillbaum zwei unterschiedliche Varianten für die Darstellung des Menüs zur Verfügung.
+            Nähere Informationen erhalten Sie durch Anklicken des jeweiligen Themas.
+            Falls Sie sich besonders für meinen Bezug zur Programmierung interessieren, empfehle ich den Post Matlab.
+        </p>
+    <div class="style-switch">
+                <input type="radio" name="menu-style" id="timeline-style" checked>
+                <label class="timeline-label" for="timeline-style">
+                    Zeitstrahl
+                </label>
+                <input type="radio" name="menu-style" id="skilltree-style">
+                <label class="skilltree-label" for="skilltree-style">
+                    Skillbaum
+                </label>
+        <div class="items">
+                <ul class="skill-list">
+                    <div class="d-flex flex-row">
+                        <div class="timeline-image-container">
+                            <img class="timeline-image" src="/static/demonstrationsite/images/timeline_new.png" alt="Website Image" >
+                        </div>
+                        <div class="timeline-links">
+                          {% for post in posts %}
+                                <li>
+                                    <div class="skill-timeline-{{ forloop.counter }}">
+                                        <a  href="{% url 'skill_detail_site' post.slug %}">
+                                            {{ post.title }}
+                                        </a>
+                                    </div>
+                                </li>
+                          {% endfor %}
+                        </div>
+                    </div>
+                </ul>
+            <div class="skill-tree-container">
+                {% for post in posts %}
+                   <div class="skill-tree-{{ forloop.counter }}">
+                       <a class="anchor-skill-tree-{{ forloop.counter }}" href="{% url 'skill_detail_site' post.slug %}">
+                           {{ post.title }}
+                       </a>
+                   </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .timeline-image-container {
+        animation: rotateTimeline 0.7s ease-in-out;
+        perspective: 500px;
+    }
+
+    @keyframes rotateTimeline {
+        from {
+            transform: rotateX(-90deg);
+            opacity: 0;
+        }
+        to
+            transform: rotateX(0deg);
+            opacity: 1;
+        }
+    }
+
+    .style-switch #timeline-style:checked ~ .items .timeline-image {
+         transform: rotateY(180deg);
+    }
+
+    .style-switch #timeline-style:checked ~ .items .skill-tree-container {
+         display: none;
+    }
+
+    .style-switch #skilltree-style:checked ~ .items ul {
+        display: none;
+    }
+
+    .style-switch {
+        width: 600px;
+        margin: 40px auto;
+    }
+
+    .skill-list li {
+        list-style: none;
+    }
+
+    .skill-list li a {
+        text-decoration: none;
+    }
+
+    #skilltree-style, #timeline-style {
+        margin-left: 100px;
+        transform: scale(1.7);
+        vertical-align: middle;
+    }
+
+    .skilltree-label, .timeline-label  {
+        margin-left: 20px;
+        font-size: 25px;
+        font-weight: bold;
+        vertical-align: middle;
+    }
+
+    /* ############# TimelineView ############################################################# */
+
+    .timeline-image {
+        margin: 20px;
+        border: solid 3px #d5d5da;
+        border-radius: 2%;
+        box-shadow: 2px 2px 8px 0px #128787;
+    }
+
+    .timeline-links li a {
+        color: var(--accent-color);
+        font-weight:bold;
+        text-shadow: 1px 1.5px 3px #f4a5a1;
+    }
+
+    .timeline-links li a:hover {
+        display: block;
+        color: black;
+        transform: translate(5px, 0px);
+        text-shadow: 1px  1px 1px var(--accent-color),
+                      1px -1px 1px var(--accent-color),
+                     -1px  1px 1px var(--accent-color),
+                     -1px -1px 1px var(--accent-color);
+    }
+
+    .timeline-links a:hover {
+        transition: 0.7s;
+        transform: scale(1.1, 1.1);
+    }
+
+    .skill-timeline-1 {                                      /*  plantas */
+        animation: fadeIn 5s ease;
+        font-size: 18px;
+        transform: translate(-473px, 488px);
+        animation: rotateTimeline 0.7s ease;
+    }
+
+    .skill-timeline-2 {                                     /*  matlab */
+        font-size: 30px;
+        transform: translate(-480px, 547px);
+        animation: rotateTimeline 0.7s ease;
+    }
+
+    .skill-timeline-3 {                                    /*  html */
+        font-size: 32px;
+        transform: translate(-486px, 265px);
+        animation: rotateTimeline 0.7s ease;
+    }
+
+    .skill-timeline-4 {                                   /*  css */
+        font-size: 32px;
+        transform: translate(-480px, 145px);
+        animation: rotateTimeline 0.7s ease;
+    }
+
+    .skill-timeline-5 {                                   /*  python */
+        font-size: 28px;
+        transform: translate(-130px, 330px);
+        animation: rotateTimeline 0.7s ease;
+    }
+
+    .skill-timeline-6 {                                   /*  sps */
+        font-size: 28px;
+        transform: translate(-100px, 442px);
+        animation: rotateTimeline 0.7s ease;
+    }
+
+    .skill-timeline-7 {                                   /*  arduino */
+        font-size: 20px;
+        transform: translate(-463px, 169px);
+        animation: rotateTimeline 0.7s ease;
+    }
+
+    .skill-timeline-8 {                                   /*  pycharm */
+        font-size: 20px;
+        transform: translate(-180px, 142px);
+        animation: rotateTimeline 0.7s ease;
+    }
+
+    .skill-timeline-9 {                                   /*  balsamiq */
+        font-size: 18px;
+        transform: translate(-460px, -210px);
+        animation: rotateTimeline 0.7s ease;
+    }
+
+    .skill-timeline-10 {                                        /*  django */
+        font-size: 28px;
+        transform: translate(-130px, -25px);
+        animation: rotateTimeline 0.7s ease;
+    }
+
+    .skill-timeline-11 {                                          /*  chatgpt */
+        font-size: 24px;
+        transform: translate(-490px, -220px);
+        animation: rotateTimeline 0.7s ease;
+    }
+
+    .skill-timeline-12 {                                        /*  Bootstrap */
+        font-size: 22px;
+        transform: translate(-150px, -196px);
+        animation: rotateTimeline 0.7s ease;
+    }
+
+    .skill-timeline-13 {                                        /*  Deployment */
+        font-size: 22px;
+        transform: translate(-178px, -388px);
+        animation: rotateTimeline 0.7s ease;
+    }
+
+    .skill-timeline-14 {                                       /*  Versioncontrol */
+        font-size: 20px;
+        transform: translate(-190px, -335px);
+        animation: rotateTimeline 0.7s ease;
+    }
+
+    /* ############# SkilltreeView ############################################################# */
+
+    .skill-tree-container {
+        margin: 40px auto;
+        width: 400px;
+        height: 400px;
+        Background-image: radial-gradient(circle, #00a1b3 1%, #005F6A 50%, #00454d 65%);
+        z-index: -1;
+        clip-path: polygon(32% 77%, 32% 75%, 31% 62%, 20% 62%, 20% 87%, 11% 87%, 14% 62%, 2% 60%, 2% 50%, 28% 47%, 29% 33%, 10% 19%, 17% 13%, 34% 22%, 45% 13%, 44% 4%, 54% 3%, 57% 14%, 69% 14%, 71% 7%, 85% 7%, 87% 16%, 78% 23%, 79% 28%, 70% 35%, 68% 49%, 98% 50%, 99% 58%, 73% 59%, 75% 75%, 82% 87%, 73% 92%, 60% 80%, 58% 75%, 32% 77%);
+    }
+
+    .skill-tree-container a:hover {
+        transition: 0.7s;
+        filter: invert() brightness(150%);
+    }
+
+    .skill-tree-1 {                                       /*  plantas */
+        font-size: 20px;
+        height: 22px;
+        width: 66px;
+        transform: translate(169px, 62px) rotate(90deg);
+        z-index: 5;
+        position: absolute;
+    }
+
+    .skill-tree-2 {                               /*  matlab */
+        font-size: 26px;
+        height: 28px;
+        width: 70px;
+        transform: translate(60px, 199px);
+        z-index: 4;
+        position: absolute;
+    }
+
+    .skill-tree-3 {                                     /*  html */
+        font-size: 50px;
+        height: 60px;
+        width: 122px;
+        transform: translate(130px, 230px);
+        z-index: 1;
+        position: absolute;
+    }
+
+    .skill-tree-4 {                                        /*  css */
+        font-size: 30px;
+        height: 32px;
+        width: 50px;
+        transform: translate(264px, 79px) rotate(-90deg);
+        z-index: 1;
+        position: absolute;
+    }
+
+    .skill-tree-5 {                                      /*  python */
+        font-size: 38px;
+        height: 50px;
+        width: 117px;
+        transform: translate(85px, 167px) rotate(-90deg);
+        z-index: 2;
+        position: absolute;
+    }
+
+    .skill-tree-6 {                                      /*  sps */
+        font-size: 30px;
+        height: 30px;
+        width: 48px;
+        transform: translate(9px, 194px);
+        z-index: 2;
+        position: absolute;
+    }
+
+    .skill-tree-7 {                                     /*  arduino */
+        font-size: 22px;
+        width: 118px;
+        height: 26px;
+        transform: translate(7.5px, 271px) rotate(-90deg);
+        z-index: 2;
+        position: absolute;
+    }
+
+    .skill-tree-8 {                                    /* pycharm */
+        font-size: 17px;
+        height: 22px;
+        width: 80px;
+        transform: translate(126px, 71px) rotate(-45deg);
+        z-index: 4;
+        position: absolute;
+    }
+
+    .skill-tree-9 {                                    /* balsamiq */
+        font-size: 17px;
+        height: 22px;
+        width: 72px;
+        transform: translate(242px, 304px) rotate(70deg);
+        z-index: 1;
+        position: absolute;
+    }
+
+    .skill-tree-10 {                                   /* django */
+        font-size: 26px;
+        height: 28px;
+        width: 66px;
+        transform: translate(203px, 73px) rotate(0deg);
+        z-index: 6;
+        position: absolute;
+    }
+
+    .skill-tree-11 {                                    /* Chatgpt */
+        font-size: 22px;
+        height: 30px;
+        width: 85px;
+        transform: translate(77px, 86px) rotate(45deg);
+        z-index: 1;
+        position: absolute;
+    }
+
+    .skill-tree-12 {                                /* Bootstrap */
+        font-size: 17px;
+        width: 80px;
+        height: 20px;
+        transform: translate(254px, 52px);
+        z-index: 2;
+        position: absolute;
+    }
+
+    .skill-tree-13 {                               /*  Deplyoment */
+        font-size: 22px;
+        height: 30px;
+        width: 150px;
+        transform: translate(271px, 201px);
+        z-index: 2;
+        position: absolute;
+    }
+
+    .skill-tree-14 {                                     /*  Versioncontrol */
+        font-size: 27px;
+        height: 28px;
+        width: 185px;
+        transform: translate(165px, 177px) rotate(-90deg);
+        z-index: 0;
+        position: absolute;
+    }
+
+    .anchor-skill-tree-1 {
+        color: #01FF53;
+        text-decoration: none;
+        text-shadow: 1px 1px 1px black;
+    }
+
+    .anchor-skill-tree-2 {
+        color: #01FD9A;
+        text-decoration: none;
+        text-shadow: 1px 1px 1px black;
+    }
+
+    .anchor-skill-tree-3 {
+        color: #ff8c00;
+        text-decoration: none;
+        text-shadow: 1px 1px 1px black;
+    }
+
+    .anchor-skill-tree-4 {
+        color: #FFD700;
+        text-decoration: none;
+        text-shadow: 1px 1px 1px black;
+    }
+
+    .anchor-skill-tree-5 {
+        color: #00CBEC;
+        text-decoration: none;
+        text-shadow: 1px 1px 1px black;
+    }
+
+    .anchor-skill-tree-6 {
+        color: #FF009E;
+        text-decoration: none;
+        text-shadow: 1px 1px 1px black;
+    }
+
+    .anchor-skill-tree-7 {
+        color: #e4f0ee;
+        text-decoration: none;
+        text-shadow: 1px 1px 1px black;
+    }
+
+    .anchor-skill-tree-8 {
+        text-decoration: none;
+        color: #FF6257;
+        text-shadow: 1px 1px 1px black;
+    }
+
+    .anchor-skill-tree-9 {
+        text-decoration: none;
+        color: #FFFF00;
+        text-shadow: 1px 1px 1px grey;
+    }
+
+    .anchor-skill-tree-10 {
+        color: cyan;
+        text-decoration: none;
+        text-shadow: 1px 1px 1px black;
+    }
+
+       .anchor-skill-tree-11 {
+        color: #01EBCF;
+        text-decoration: none;
+        text-shadow: 1px 1px 1px black;
+    }
+
+    .anchor-skill-tree-12 {
+        color: #DB00EB;
+        text-decoration: none;
+        text-shadow: 1px 1px 1px black;
+    }
+
+    .anchor-skill-tree-13 {
+        color: #FF00D6;
+        text-decoration: none;
+        text-shadow: 1px 1px 1px black;
+    }
+
+    .anchor-skill-tree-14 {
+        color: red;
+        text-decoration: none;
+        text-shadow: 1px 1px 1px black;
+    }
+</style>
+{% endblock %}

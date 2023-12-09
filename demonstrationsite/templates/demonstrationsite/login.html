@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Loginbereich
+{% endblock %}
+
+{% block content %}
+<div class="basic-formatting">
+    <div class="login-container">
+        <h2>
+          Login
+        </h2>
+        <form method="POST" class="form-control loginform" action="{% url 'login_site' %}">
+          {% csrf_token %}
+          <div class="login-input-container">
+            <input class="login-input" name="user_name" type="text">
+            <div class="entry-text-login">
+              Benutzername
+            </div>
+          </div>
+            <input class="login-input" name="password" type="password">
+            <div class="entry-text-login">
+              Passwort
+            </div>
+            <input type="submit" value="Einloggen" class="btn btn-secondary login-button">
+        </form>
+        <br>
+        <div>
+          {% if messages %}
+              <ul class="feedback-messages">
+                  {% for message in messages %}
+                      <div>
+                          <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                              {{ message }}
+                          </li>
+                      </div>
+                  {% endfor %}
+              </ul>
+          {% endif %}
+        </div>
+          <div>
+            Noch kein Account?
+              <a href="{% url 'registration_site' %}" class="link-danger">
+                Neuen Account erstellen?
+              </a>
+          </div>
+    </div>
+</div>
+<style>
+    .login-container {
+        margin: 0 auto;
+        width: 425px;
+    }
+
+    .login-input-container {
+        margin-bottom: 80px;
+    }
+
+    .loginform {
+        width: 425px;
+        padding: 50px 50px 50px 20px;
+        border: solid;
+        border-color: #dee0e3;
+        border-radius: 3%;
+        background-image: linear-gradient(0deg, #6A8EA2 15%, #1abcbd 46%);
+    }
+
+    .entry-text-login {
+        position: absolute;
+        font-size: 1.4em;
+        color: var(--accent-color);
+        padding-top: 8px;
+        margin: 0 30px;
+        background-color: #1abcbd;
+    }
+
+    .login-input {
+        position: absolute;
+        background: transparent;
+        width: 380px;
+        font-size: 1.2em;
+        padding: 10px 30px;
+        border-radius: 10%;
+        line-height: 20px;
+        border: 2px solid #dee0e3;
+        z-index: 2;
+    }
+
+    .login-input:focus,
+    .login-input:hover {
+        color: var(--accent-color);
+        border: 3px solid var(--accent-color);
+    }
+
+    .login-input:focus + .entry-text-login,
+    .login-input:hover + .entry-text-login {
+        color: var(--accent-color);
+        height: 30px;
+        line-height: 24px;
+        transform: translate(-5px, -24px) scale(0.88);
+        z-index: 2;
+    }
+
+    .login-button {
+        position: relative;
+        margin-top: 85px;
+        background-color: var(--main-bg-color);
+        border: 2px solid #b3b3b3;
+        box-shadow: 2px 2px 8px 0px #128787;
+    }
+
+    .login-button:hover {
+        border: 2px solid var(--accent-color);
+        color: var(--accent-color);
+        background-color: var(--main-bg-color);
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,61 @@
+<div class="footer-space-reservation">
+    <footer class="footer">
+            {% if is_index_page %}
+                <div class="visitor-counter">
+                    Anzahl Aufrufe: {{ amount_visitors }}
+                </div>
+            {% endif %}
+                <div class="footer-welcome-text">
+                    Demonstrationsseite von M.Kohler 🚀
+                </div>
+                {% if user.is_authenticated %}
+                    <div class="footer-welcome-text">
+                            Herzlich Willkommen <strong>{{ user.username }}</strong>
+                    </div>
+                {% endif %}
+               <div class="footer-links">
+                    <a href="https://www.xing.com/profile/Maximilian_Kohler063967">|    XING-Profil    |</a>
+                    <a href="#">|   GitHub   |</a>
+                    <a href="/admin/">|   Admin   |</a>
+               </div>
+    </footer>
+</div>
+<style>
+    .visitor-counter,
+    .footer-welcome-text {
+        margin-left: 20px;
+    }
+
+    .footer-space-reservation {
+        height: 50px;
+    }
+
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 40px;
+        background-color: var(--main-bg-color);
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 16px;
+        box-shadow: 0 0 8px 8px #128787;
+    }
+
+    .footer a {
+        transition: 0.5s;
+        text-decoration: none;
+        color: white;
+    }
+
+    .footer a:hover {
+        color: var(--accent-color);
+    }
+
+    .footer-links {
+        margin-right: 7px;
+    }
+</style>

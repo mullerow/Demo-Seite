@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Kontaktformular
+{% endblock %}
+
+{% block content %}
+<div class="basic-formatting">
+    <h2>
+        Kontaktformular
+    </h2>
+    <div>
+         <p>
+             Ich hoffe, Sie konnten einen positiven Eindruck von meinen Fähigkeiten gewinnen.
+         <br>
+             Unabhängig davon, freue ich mich über Ihre Nachricht und werde diese in Kürze beantworten. Vielen Dank für Ihr Interesse!
+         </p>
+    </div>
+    {% if messages %}
+        <ul class="feedback-messages">
+            {% for message in messages %}
+                <div>
+                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                        {{ message }}
+                    </li>
+                </div>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <div class="m-3">
+        {% if sender_first_name and sender_last_name %}
+            <p>
+                <b>
+                    Vielen Dank für Ihre E-Mail
+                    <span class="email-sender-name">
+                        {{ sender_first_name }} {{ sender_last_name }}
+                    </span>
+                    . Ich werde zeitnah auf Ihre E-Mail reagieren.
+                </b>
+            </p>
+        {% endif %}
+    </div>
+    <br>
+    <form method="POST" action="#">
+        {% csrf_token %}
+        <div class="contact-formular">
+            <div class="row">
+                <div class="col">
+                    <div>
+                        <strong>Vorname</strong>
+                    </div>
+                    <input type="text" name="sender_first_name" class="contact-formular-input" id="sender_first_name" value="{{ user.first_name }}">
+                </div>
+                <div class="col">
+                    <div>
+                        <strong>Nachname</strong>
+                    </div>
+                    <input type="text" name="sender_last_name" class="contact-formular-input" id="sender_last_name" value="{{ user.last_name }}">
+                </div>
+                <div class="col">
+                    <div>
+                        <strong>E-Mail-Adresse</strong>
+                    </div>
+                    <input type="email" name="sender_email" class="contact-formular-input" id="sender_email" value="{{ user.email }}">
+                </div>
+            </div>
+            <div>
+                <div>
+                    <strong>Betreff</strong>
+                </div>
+                <input type="text" name="message_subject" class="contact-formular-input" id="message_subject">
+            </div>
+            <div>
+                <div class="textarea-container">
+                    <div>
+                        <strong>Nachricht</strong>
+                    </div>
+                    <textarea rows="5" name="email_message" class="contact-formular-input" id="email_message">
+                    </textarea>
+                </div>
+                <div>
+                    <input type="submit" class="btn btn-secondary contact-button" value="Nachricht absenden">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<style>
+    #sender_email {
+        width: 300px;
+    }
+
+    #message_subject {
+        width: 300px;
+        margin-bottom: 20px;
+    }
+
+    .textarea-container {
+        width: 100%;
+        min-width: 200px;
+    }
+
+    #email_message {
+        width: 100%;
+    }
+
+    .contact-formular {
+        border-radius: 15px;
+        max-width: 970px;
+        margin-right: 20px;
+    }
+
+    .contact-formular-input {
+        box-shadow: 2px 2px 8px 0px #128787;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+
+    .email-sender-name {
+        color: var(--accent-color);
+        font-size: 22px;
+        text-shadow: 1px 1px 1px darkgray;
+    }
+
+    .contact-button {
+        background-color: var(--main-bg-color);
+        border: 2px solid #b3b3b3;
+        box-shadow: 2px 2px 8px 0px #128787;
+        margin-bottom: 20px;
+    }
+
+    .contact-button:hover {
+        color: var(--accent-color);
+        background-color: var(--main-bg-color);
+        border: 2px solid var(--accent-color);
+    }
+</style>
+{% endblock %}
+
+
+

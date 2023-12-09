@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Account Informationen
+{% endblock %}
+
+{% block content %}
+<div class="basic-formatting">
+    <div>
+           <h2>
+               Nutzerprofil von {{ user.username }}
+           </h2>
+        <p>
+            Danke, dass Sie sich registriert haben! Hier haben Sie die Möglichkeit,
+            Angaben zu Ihrer Person zu machen und sich ein Profilbild für die Kommentarfunktion zu wählen
+        </p>
+        {% if messages %}
+            <ul class="feedback-messages">
+                {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                        {{ message }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+        <div class="account-container">
+            <form class="form-control" method="POST" action="{% url 'account_site' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row account-formular">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="account-salutation-label">
+                            <strong>Anrede</strong>
+                        </div>
+                        <div class="account-salutation-dropdown">
+                             {{ form.salutation }}
+                        </div>
+                        <div>
+                            <strong>Vorname</strong>
+                        </div>
+                        <div class="account-input">
+                             {{ form.first_name }}
+                        </div>
+                        <div>
+                            <strong>Nachname</strong>
+                        </div>
+                        <div class="account-input">
+                             {{ form.last_name }}
+                        </div>
+                        <div>
+                            <strong>E-Mail</strong>
+                        </div>
+                        <div class="account-input">
+                            {{ form.email }}
+                        </div>
+                        <div class="account-input">
+                            <strong>Programmierkompetenz</strong>
+                        </div>
+                        <div class="account-input">
+                            {{ form.it_reference }}
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="account-about-me-label">
+                            <strong>Profiltext</strong>
+                        </div>
+                        <div class="account-input">
+                            {{ form.about_me }}
+                        </div>
+                    </div>
+                    <div class="col-lg-4 profile-image-container">
+                        <div class="account-profile-image-label">
+                            <strong>Profilbild</strong>
+                        </div>
+                        <div>
+                            <img src="{{ user.profile_image.image.url }}" alt="Profilbild" class="account-profile-image">
+                        </div>
+                        <div class="choose-profile-image-link">
+                            <a href="{% url 'choose_image_site' %}" class="link-danger">
+                                Profilbild auswählen?
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" class="btn btn-secondary account-button" value="Angaben ändern">
+            </form>
+        </div>
+</div>
+<style>
+    #form_about_me_id {
+        width:290px;
+        height:360px;
+    }
+
+    .account-salutation-label {
+        margin-top: 20px;
+    }
+    .account-input input {
+        margin-bottom: 30px;
+        border-radius: 10px;
+        width: 270px;
+    }
+
+    .account-about-me-label {
+        margin-top: 20px;
+    }
+
+    .account-profile-image-label {
+        margin: 0 150px 20px 0;
+    }
+
+    .account-profile-image {
+        border-radius: 25%;
+    }
+
+    .profile-image-container {
+        width: 290px;
+        margin: 20px 0;
+        text-align: center;
+    }
+
+    .choose-profile-image-link {
+        margin-top: 30px;
+        font-size: 20px;
+    }
+
+    .account-input textarea {
+        border-radius: 10px 10px 50px 10px;
+    }
+
+    .account-salutation-dropdown select {
+           margin-bottom: 30px;
+           background-color: white;
+           border-radius: 10px;
+    }
+
+    .account-container {
+        margin: 20px 0 20px 0;
+        box-shadow: 2px 2px 8px 0px #128787;
+    }
+
+    .account-formular {
+        background-image: linear-gradient(45deg, #1abcbd 47%, #a5f3f3 77%, #1abcbd 97%);
+        padding: 5px;
+        border-radius: 30px;
+        margin: 1px;
+    }
+
+    .form-control {
+        background-color: #01637e;
+        border: 2px solid var(--main-bg-color);
+    }
+
+    .account-button {
+        border: 2px solid #b3b3b3;
+        background-color: var(--main-bg-color);
+        box-shadow: 2px 2px 8px 0px #128787;
+        margin-top: 10px;
+    }
+
+    .account-button:hover {
+        color: var(--accent-color);
+        background-color: var(--main-bg-color);
+        border: 2px solid var(--accent-color);
+    }
+</style>
+{% endblock %}

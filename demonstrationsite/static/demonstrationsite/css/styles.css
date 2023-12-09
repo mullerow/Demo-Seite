@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Electrolize&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;700;900&display=swap');
+
+:root {
+    --main-bg-color: #014254;
+     --accent-color: #ffe246;
+}
+
+body {
+    font-size: 17px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 500;
+    background-image: linear-gradient(45deg, #1abcbd 40%, #a5f3f3 70%, #1abcbd 90%);
+    min-height: 100vh;
+    max-width: 100vw;
+    min-width: 360px;
+    letter-spacing: 0.04em;
+}
+
+.basic-formatting {
+    margin: 0 80px;
+    padding-top: 75px;
+}
+
+h2 {
+    text-shadow: 1.5px 1px 0px var(--accent-color);
+}
+
+.feedback-messages {
+    font-size: 20px;
+    color: #e01212;
+    font-weight: 900;
+    text-shadow: 1px 1px 1px black;
+    padding-left: 0;
+}
+
+.feedback-messages li {
+    list-style: none;
+}

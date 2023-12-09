@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Startseite
+{% endblock %}
+
+{% block content %}
+
+<div class="basic-formatting">
+    <div class="row">
+        <div class="col-lg-8 welcome-text">
+               <h2><strong>Herzlich WILLKOMMEN!</strong></h2>
+            <p>
+                Schön, dass Sie da sind und sich für meine Webseite Zeit nehmen.
+            </p>
+            <p>
+                Mit dieser Webseite möchte ich Ihnen einen Einblick in die von mir in den letzten fünf Monaten autodidaktisch erworbenen Fähigkeiten in der Webentwicklung bieten. Dabei liegt mein Fokus vor allem auf der fehlerfreien Darstellung der Inhalte und das Schreiben von sauberem Code.
+                Ich habe diese Webseite im Responsive Design für alle gängigen Bildschirmgrößen entwickelt.
+            </p>
+            <p>
+                Ich lade Sie ein, alle angebotenen Funktionen der Webseite zu testen und würde mich über Ihr Feedback auf der Startseite oder natürlich über weiterführenden Kontakt bezüglich einer potenziellen Anstellung freuen.
+            </p>
+        </div>
+        <div class="col">
+            <div>
+                {% if messages %}
+                    <ul class="feedback-messages">
+                        {% for message in messages %}
+                            <div>
+                                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                                    {{ message }}
+                                </li>
+                            </div>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                <div class="index-heading">
+                    Kommentieren
+                </div>
+                    <form method="POST" action="{% url 'index_site' %}">
+                        {% csrf_token %}
+                        <div class="index-name-label">
+                            <strong>Name</strong>
+                        </div>
+                            <input class="comment-input" name="comment_username" type="text" value="{{ user.username }}">
+                        <div class="index-it-label">
+                            <strong>Programmierkompetenz</strong>
+                        </div>
+                             <input class="comment-input" name="comment_it_reference" type="text" value="{{ user.it_reference }}">
+                        <div class="index-comment-label">
+                            <strong>Ihr Kommentar </strong>
+                        </div>
+                        <textarea class="comment-input-text" name="comment_text"></textarea>
+                        <div>
+                            <input type="submit" value="Kommentar senden" class="btn btn-secondary comment-button">
+                        </div>
+                    </form>
+                <br>
+                <p class="index-heading">
+                    Kommentare zur Website
+                </p>
+                {% for comment in comments %}
+                    <div class="grid-container-comment">
+                        <div class="comment-username">
+                                <strong>{{ comment.comment_username }}</strong>
+                        </div>
+                        <div class="comment-date">
+                                {{ comment.comment_date }}
+                        </div>
+                        <div class="comment-it">
+                                <strong>{{ comment.comment_it_reference }}</strong>
+                        </div>
+                        <div class="grid-comment-image">
+                            {% if comment.comment_image %}
+                                <img src="{{ comment.comment_image.url }}" alt="Profilbild" class="comment-image">
+                            {% endif %}
+                        </div>
+                        <div class="comment-text">
+                                {{ comment.comment_text }}
+                        </div>
+                    </div>
+                <hr class="horizontal-line">
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .index-name-label,
+    .index-it-label,
+    .index-comment-label {
+        margin-top: 15px;
+        margin-left: 4px;
+    }
+
+    .comment-input {
+        border-radius: 5px;
+        box-shadow: 2px 2px 8px 0px #128787;
+        width: 320px;
+    }
+
+    .comment-input-text {
+        border-radius: 5px 5px 32px 5px;
+        box-shadow: 2px 2px 8px 0px #128787;
+        width: 320px;
+        height: 150px;
+    }
+
+    .comment-button {
+        margin-top: 20px;
+        background-color: var(--main-bg-color);
+        box-shadow: 2px 2px 8px 0px #128787;
+        border: 2px solid #b3b3b3;
+    }
+
+    .comment-button:hover {
+        color: var(--accent-color);
+        background-color: var(--main-bg-color);
+        border: 2px solid var(--accent-color);
+    }
+
+    .welcome-text {
+         text-align: justify;
+         margin-right: 30px;
+         max-width: 1000px;
+    }
+
+    .horizontal-line {
+        border-bottom: 2px solid #000000;
+    }
+
+    .grid-container-comment {
+        display: grid;
+        grid-template-columns: 28% 28% 28% 16%;
+        grid-template-areas:
+            "user user user image"
+            "reference reference date date"
+            "text text text text";
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .comment-username {
+        grid-area: user;
+        max-width: 300px;
+    }
+
+    .comment-date {
+        grid-area: date;
+        text-align: right;
+    }
+
+    .comment-it {
+        grid-area: reference;
+        max-width: 320px;
+    }
+
+    .comment-image {
+        width: 50px;
+        border-radius: 25%;
+    }
+
+    .grid-comment-image {
+        grid-area: image;
+    }
+
+    .comment-text {
+        grid-area: text;
+    }
+</style>
+{% endblock %}

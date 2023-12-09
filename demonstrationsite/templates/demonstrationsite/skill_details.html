@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Skill: {{ post.title }}
+{% endblock %}
+
+{% block content %}
+<div class="basic-formatting skill-detail-text">
+    <a class="link-to-skillsite" href="{% url 'skill_list_site' %}">
+        Zurück zur Übersicht
+    </a>
+    <div class="row">
+        <div class="skill-title col-8">
+            <p>
+                {{ post.title }}
+            </p>
+        </div>
+        <div class="col-4">
+            <p>
+                {{ post.post_date }}
+            </p>
+        </div>
+    </div>
+    <div class="skilldetail-experience">
+        <strong>Erfahrung: {{ post.experience }} Monate</strong>
+    </div>
+    <div>
+        <p>
+            <strong>{{ post.short_description }}</strong>
+        </p>
+    </div>
+    <hr class="skilldetail-h-line">
+    <div class="post-text">
+           <p>
+               {{ post.post_text|linebreaks|safe }}
+           </p>
+    </div>
+    <div class="skill-image-container">
+        {% if 'media/post_image/default_image' in post.post_image.url %}
+            <img class="no-post-image" src="{{ post.post_image.url }}" alt="Kein Bild vorhanden">
+        {% else %}
+            <img class="post-image" src="{{ post.post_image.url }}" alt="Kein Bild vorhanden">
+        {% endif %}
+    </div>
+</div>
+<style>
+    .link-to-skillsite {
+        color: red;
+    }
+
+    .skill-title {
+        font-size: 30px;
+        text-shadow: 1px 1.5px 0px var(--accent-color);
+    }
+
+    .post-image,
+    .no-post-image {
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        max-width: 1000px;
+    }
+
+     .post-image {
+        max-width: 800px;
+        max-height: 600px;
+        width: auto;
+        height: auto;
+     }
+
+    .no-post-image {
+        width: 200px; height: 200px;
+    }
+
+    .skilldetail-h-line  {
+        border: 3px solid black;
+    }
+
+    .skilldetail-experience {
+        margin-bottom: 10px;
+    }
+
+    .post-text {
+        line-height: 1.8em;
+    }
+
+    .skill-image-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .skill-detail-text {
+        max-width: 1300px;
+    }
+</style>
+{% endblock %}

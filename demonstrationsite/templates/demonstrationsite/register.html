@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Registrierbereich
+{% endblock %}
+
+{% block content %}
+<div class="basic-formatting">
+    <h2>
+        Registrieren
+    </h2>
+    <p>
+        Sobald Sie sich angemeldet haben, erhalten Sie Zugriff auf das Account-Management
+    </p>
+    <div class="row">
+        <div class="col-lg-6 registerform">
+            <form method="POST" action="{% url 'registration_site' %}">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col register-input-label">
+                        {% for field in form %}
+                            <div class="register-label">
+                                <strong>{{ field.label_tag }}</strong>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="col register-input-fields">
+                         {% for field in form %}
+                            <div>
+                                {{ field }}
+                            </div>
+                         {% endfor %}
+                    </div>
+                </div>
+                <input type="submit" class="btn btn-secondary registration-button" value="Registrieren">
+            </form>
+        </div>
+        <div class="registration-information col-lg-6">
+            <div>
+                <h3>
+                    <strong>Eingabebedingungen</strong>
+                </h3>
+                <p>
+                    Das Passwort muss mindestens 8 Zeichen lang sein.
+                </p>
+                <p>
+                    Das Passwort darf nicht vollständig oder in Teilen dem Nutzernamen entsprechen.
+                </p>
+                <p>
+                    Allgemein zu häufig verwendete Passwörter dürfen nicht verwendet werden.
+                </p>
+            </div>
+            <div class="{% if field.errors %} errors {% endif %}">
+                <h3>
+                    <strong>Fehlerinformationen</strong>
+                </h3>
+               <div>
+                    {% if messages %}
+                      <ul class="feedback-messages">
+                          {% for message in messages %}
+                              <div>
+                                  <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                                      {{ message }}
+                                  </li>
+                              </div>
+                          {% endfor %}
+                      </ul>
+                    {% else %}
+                      <p>
+                          Bisher gibt es keine Probleme.
+                      </p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .register-input-fields div {
+        margin-bottom: 27px;
+    }
+
+    .registerform {
+        margin: 20px 40px 0 0;
+        background-color: #18b4b4;
+        padding: 20px 0 20px 20px;
+        width: 480px;
+        border-radius: 15px;
+        box-shadow: 2px 2px 8px 0px #128787;
+    }
+
+    .register-input-label {
+        line-height: 40px;
+        font-size: 20px;
+    }
+
+    .register-input-fields input {
+        border-radius: 10px;
+        width: 200px;
+    }
+
+    .register-label {
+        margin-bottom: 17px;
+    }
+
+    .registration-information {
+        width: 480px;
+        padding: 1rem;
+        font-size: 18px;
+        margin-top: 20px;
+        border-radius: 15px;
+        box-shadow: 2px 2px 8px 0px #128787;
+        background-color: #18b4b4;
+    }
+
+    .registration-information:hover {
+        background-color: #1ccaca;
+    }
+
+    .registerform:hover {
+        background-color: #1ccaca;
+    }
+
+    .registration-button {
+        background-color: var(--main-bg-color);
+        margin-top: 20px;
+        font-size: 20px;
+        box-shadow: 2px 2px 8px 0px #128787;
+        border: 2px solid #b3b3b3;
+    }
+
+    .registration-button:hover {
+        color: var(--accent-color);
+        background-color: var(--main-bg-color);
+        border: 2px solid var(--accent-color);
+    }
+
+</style>
+
+{% endblock %}
